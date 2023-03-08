@@ -6,5 +6,5 @@ USER node
 COPY package.json .
 RUN npm install
 COPY . ./
-EXPOSE 3011
+EXPOSE 80
 CMD ["npm", "start"]
