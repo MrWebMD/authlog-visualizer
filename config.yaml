@@ -1,0 +1,15 @@
+---
+logs:
+  - path: logs/auth.log
+    year: 2023
+  - path: logs/auth.log.1
+    year: 2023
+  - path: logs/auth.log.2
+    year: 2023
+  - path: logs/auth.log.3
+    year: 2023
+appSettings:
+  originServer:
+    label: "nimbus"
+    lat: 40.793
+    lng: -74.0247

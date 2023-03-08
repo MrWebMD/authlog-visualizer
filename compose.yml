@@ -1,0 +1,23 @@
+version: "2.4"
+
+services:
+  auth-log-visualizer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mrwebmd-auth-log-visualizer
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.mrwebmd-auth-log-visualizer.entrypoints=websecure"
+      - "traefik.http.routers.mrwebmd-auth-log-visualizer.rule=Host(`sshd.mrwebmd.com`)"
+      - "traefik.http.routers.mrwebmd-auth-log-visualizer.service=mrwebmd-auth-log-visualizer"
+      - "traefik.http.services.mrwebmd-auth-log-visualizer.loadbalancer.server.port=80"
+networks:
+  proxy:
+    external: true

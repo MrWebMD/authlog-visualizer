@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Auth.log visualizer" />
+    <meta name="keywords" content="Auth, linux, ssh, visualizer" />
+    <meta name="author" content="MrWebMD" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth.log visualizer</title>
+    <script src="/js/globe.gl.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="/js/jquery.v3.2.1.min.js"></script>
+    <script src="/js/Chart.v2.5.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker-polyfills-ie11/dist/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
+    <script>
+
+      /**
+       * @typedef {Object} AppSettings
+       * @property {Object} originServer
+       * @property {string} originServer.label The name of the recipient server which will appear on the dashboard
+       * @property {number} originServer.lat The latitude coordinate of where the server is
+       * @property {number} originServer.lng The longitude coordinate of where the server is
+       */
+        const APP_SETTINGS = {
+          originServer: {
+            label: "<%- appSettings.originServer.label %>",
+            lat: <%- appSettings.originServer.lat %>,
+            lng: <%- appSettings.originServer.lng %>
+          }
+        }
+    </script>
+  </head>
+
+  <body>
+    <div id="globeViz"></div>
+
+    <div class="dashboard">
+      <nav class="dashboard__nav">
+        <div class="dashboard__card flex-row">
+          <h4>SSHD Attacks on <%- appSettings.originServer.label %></h4>
+          <div>
+            <label for="datepicker">Log Range</label>
+            <input id="datepicker" />
+            <button id="changeLogRangeButton">GO</button>
+          </div>
+          <div class="flex-row dashboard__noDistractionsSwitch">
+            <h4>No Distractions mode</h4>
+            <label class="switch">
+              <input type="checkbox" id="noDistractionsSwitch" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </nav>
+      <main class="dashboard__main">
+        <aside class="dashboard__aside">
+          <div class="dashboard__card">
+            <h4>Failed Login Attempts</h4>
+            <h2 id="failedLoginAttempts"></h2>
+          </div>
+          <div class="dashboard__card">
+            <h4>Unique Attacks</h4>
+            <h2 class="stat" id="unique-attacks"></h2>
+            <h4>Total Geolocated Attacks</h4>
+            <h2 id="totalUniqueGeolocatedAttempts"></h2>
+            <h4>Geolocation errors</h4>
+            <h2 id="geolocationErrors"></h2>
+          </div>
+          <div class="dashboard__card">
+            <h4>Largest Single Attack</h4>
+            <h2 id="largestSingleAttackCountryName"></h2>
+            <p>latitude</p>
+            <h2 id="largestSingleAttackLat"></h2>
+            <p>Longitude</p>
+            <h2 id="largestSingleAttackLng"></h2>
+            <p>Attempts</p>
+            <h2 class="stat" id="largestSingleAttackAttempts"></h2>
+          </div>
+        </aside>
+        <div class="dashboard__center">
+          <div></div>
+          <div class="dashboard__card dashboard__card--scrollX">
+            <div style="width: 2000px">
+              <h4>Attacks by country</h4>
+              <canvas id="attacksByCountry" height="300px" width="2000px"></canvas>
+            </div>
+          </div>
+        </div>
+        <aside class="dashboard__aside">
+          <div class="dashboard__card">
+            <h4>Total Countries</h4>
+            <h2 id="totalCountries"></h2>
+          </div>
+          <div class="dashboard__card">
+            <h4>Most Dangerous Country</h4>
+            <h2 id="mostDangerousCountryName"></h2>
+            <p>Attempts</p>
+            <h2 id="mostDangerousCountryAttempts"></h2>
+          </div>
+        </aside>
+      </main>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
