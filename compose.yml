@@ -11,6 +11,9 @@ services:
       - 3013:80
     networks:
       - proxy
+    volumes:
+      - ./logs:./logs
+      - ./.cache:./.cache
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
