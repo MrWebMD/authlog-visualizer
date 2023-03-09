@@ -374,6 +374,11 @@ const main = async () => {
     .labelResolution(2)
     .labelAltitude(() => 0.4 * Math.random() + 0.2)
     .atmosphereAltitude(0.3)(document.getElementById("globeViz"));
+
+  /**
+   * Rotating globes are awesome.
+   */
+  globe.controls().autoRotate = true;
   /**
    * Determine what the earliest date and latest date
    * in the parsed logs are.
