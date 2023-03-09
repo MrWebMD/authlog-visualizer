@@ -170,7 +170,6 @@ input:checked + .slider:before {
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
@@ -178,5 +177,32 @@ input:checked + .slider:before {
   display: none !important;
 }
 .lowOpacity {
-  opacity: 0.3;
+  opacity: 0.2;
+}
+.github {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  opacity: 0.6;
+  margin: 25px;
+}
+.github__link {
+  display: relative;
+}
+
+.github__image {
+  display: relative;
+}
+.github__name {
+  color: white;
+  font-weight: bold;
+}
+@media screen and (max-width: 800px) {
+  .dashboard main {
+    display: none;
+  }
+  .dashboard__nav > .dashboard__card {
+    flex-direction: column;
+  }
 }

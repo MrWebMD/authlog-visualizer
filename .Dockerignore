@@ -1,0 +1,6 @@
+compose.yml
+.git
+Dockerfile
+.cache
+node_modules
+.Dockerignore
